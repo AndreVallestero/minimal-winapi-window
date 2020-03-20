@@ -19,17 +19,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wc.hCursor       = LoadCursor(0, IDC_ARROW);
 
 	RegisterClass(&wc);
-	hwnd01 = CreateWindow( wc.lpszClassName, TEXT("GUI01 Headline"),
-		WS_OVERLAPPEDWINDOW | WS_VISIBLE, 150, 150, 330, 150, 0, 0, hInstance, 0);
+	hwnd01 = CreateWindow(wc.lpszClassName, TEXT("GUI01 Headline"),
+		                    WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT,
+                        CW_USEDEFAULT, 640, 360, NULL, NULL, hInstance, 0);
 
-	while( GetMessage(&msg, NULL, 0, 0)) {
+	while(GetMessage(&msg, NULL, 0, 0)) {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-	return (int) msg.wParam;
+	return (int)msg.wParam;
 }
 
-LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch(msg) {
 		case WM_CREATE: {
 			CreateWindow(TEXT("button"), TEXT("Change Background"),

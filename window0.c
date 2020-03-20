@@ -16,7 +16,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     return 1;
 
   if(!CreateWindow(wc.lpszClassName, "Minimal Windows Application",
-     WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, 0, 640, 480, 0, 0, hInstance, NULL))
+                   WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT,
+                   CW_USEDEFAULT, 640, 360, NULL, NULL, hInstance, NULL))
     return 2;
 
     while(GetMessage(&msg, NULL, 0, 0 ) > 0)

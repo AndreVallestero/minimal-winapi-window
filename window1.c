@@ -23,8 +23,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine,
 
   RegisterClassW(&wc);
   hwnd = CreateWindowW(wc.lpszClassName, L"Window", 
-                       WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, 350, 250,
-                       NULL, NULL, hInstance, NULL);  
+                       WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT,
+                       CW_USEDEFAULT,640, 360, NULL, NULL, hInstance, NULL);  
 
   ShowWindow(hwnd, nCmdShow);
   UpdateWindow(hwnd);
