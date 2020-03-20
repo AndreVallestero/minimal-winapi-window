@@ -1,20 +1,18 @@
+// https://stackoverflow.com/questions/5789272/how-to-change-the-background-image-of-a-window-in-win32/5789354#5789354
+// g++ 'window3.cc' -mwindows
+
 #include <windows.h>
 
-//g++ "window3.cc" -mwindows -o "window3.exe"
-
-// initialize variables
 HWND hwnd01, label01;
 HBITMAP hBitmap01 = NULL;
 
-// initialize functions
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-
-int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
-                LPSTR lpCmdLine, int nCmdShow ) {
-	MSG  msg ;
-	WNDCLASS wc = {0};
-	wc.lpszClassName = TEXT( "GUI01" );
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow) {
+	MSG msg;
+	WNDCLASS wc      = {0};
+	wc.lpszClassName = TEXT("GUI01");
 	wc.hInstance     = hInstance ;
 	wc.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
 	wc.lpfnWndProc   = WndProc ;
@@ -34,14 +32,14 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
 	switch(msg) {
 		case WM_CREATE: {
-			CreateWindow(TEXT("button"), TEXT("Change Background"), WS_VISIBLE | WS_CHILD ,
-				20, 50, 140, 25, hwnd, (HMENU) 1, NULL, NULL);
+			CreateWindow(TEXT("button"), TEXT("Change Background"),
+        WS_VISIBLE | WS_CHILD, 20, 50, 140, 25, hwnd, (HMENU) 1, NULL, NULL);
 
-			CreateWindow(TEXT("button"), TEXT("Quit"), WS_VISIBLE | WS_CHILD ,
-				190, 50, 80, 25, hwnd, (HMENU) 2, NULL, NULL);
+			CreateWindow(TEXT("button"), TEXT("Quit"),
+        WS_VISIBLE | WS_CHILD, 190, 50, 80, 25, hwnd, (HMENU) 2, NULL, NULL);
 				
-			label01 = CreateWindow(TEXT("Edit"), TEXT("Label"), WS_VISIBLE | WS_CHILD,
-				20, 10, 280, 25, hwnd, (HMENU) 3, NULL, NULL);
+			label01 = CreateWindow(TEXT("Edit"), TEXT("Label"),
+        WS_VISIBLE | WS_CHILD, 20, 10, 280, 25, hwnd, (HMENU) 3, NULL, NULL);
 			break;
 		}
 
@@ -50,10 +48,12 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
 				TCHAR* string01 = new TCHAR[300];
 
 				GetWindowText(label01, string01, 300);
-				hBitmap01 = (HBITMAP)LoadImage(NULL, string01, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+				hBitmap01 = (HBITMAP)LoadImage(NULL, string01, IMAGE_BITMAP, 0, 0,
+                                       LR_LOADFROMFILE);
 
 				if (hBitmap01==NULL) 
-					MessageBox(NULL, "Error Loading Image.", "ERROR", MB_ICONWARNING | MB_DEFBUTTON2);
+					MessageBox(NULL, L"Error Loading Image.", L"ERROR",
+                     MB_ICONWARNING | MB_DEFBUTTON2);
 				else
 					InvalidateRect(hwnd01, NULL, TRUE);
 			}
@@ -70,9 +70,8 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
 			HDC             hdcMem01;
 			HGDIOBJ         oldBitmap01;
 
-			hdc01 = BeginPaint(hwnd01, &ps01);
-
-			hdcMem01 = CreateCompatibleDC(hdc01);
+			hdc01       = BeginPaint(hwnd01, &ps01);
+			hdcMem01    = CreateCompatibleDC(hdc01);
 			oldBitmap01 = SelectObject(hdcMem01, hBitmap01);
 
 			GetObject(hBitmap01, sizeof(bitmap01), &bitmap01);
