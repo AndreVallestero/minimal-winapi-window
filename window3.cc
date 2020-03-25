@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/5789272/how-to-change-the-background-image-of-a-window-in-win32/5789354#5789354
-// g++ 'window3.cc' -mwindows
+// g++ window3.cc -mwindows
 
 #include <windows.h>
 
@@ -76,7 +76,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 			oldBitmap01 = SelectObject(hdcMem01, hBitmap01);
 
 			GetObject(hBitmap01, sizeof(bitmap01), &bitmap01);
-			BitBlt(hdc01, 0, 0, bitmap01.bmWidth, bitmap01.bmHeight, hdcMem01, 0, 0, SRCCOPY);
+			BitBlt(hdc01, 0, 0, bitmap01.bmWidth, bitmap01.bmHeight, hdcMem01, 0, 0,
+             SRCCOPY);
 
 			SelectObject(hdcMem01, oldBitmap01);
 			DeleteDC(hdcMem01);
