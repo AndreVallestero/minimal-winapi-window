@@ -1,4 +1,5 @@
 // https://www.codeproject.com/Articles/215690/Minimal-WinApi-Window
+// gcc -mwindows hello-triangle.c 
 
 #include <windows.h>
 
