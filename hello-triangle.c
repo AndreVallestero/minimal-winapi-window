@@ -34,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                      CW_USEDEFAULT, 640, 360, NULL, NULL, hInstance, NULL))
         return 2;
 
-    p_tri_points = malloc(sizeof(POINT)*8);
+    p_tri_points = malloc(sizeof(POINT)*3);
     p_tri_points[0].x = p_tri_points[0].y = p_tri_points[1].y = 10;
     p_tri_points[1].x = p_tri_points[2].y = 110;
     p_tri_points[2].x = 60;
